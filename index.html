@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nightmare Ladders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app">
+    <section id="intro-screen" class="intro-screen" aria-label="Start a two player game">
+      <div class="intro-panel">
+        <p class="eyebrow">THE HOUSE NEEDS TWO NAMES</p>
+        <h2>ENTER IF<br><span>YOU DARE</span></h2>
+        <p class="intro-copy">Two souls enter the estate. Only one reaches the exit.</p>
+        <form id="name-form" class="name-form">
+          <label><span>PLAYER ONE</span><input id="player-one-name" maxlength="16" autocomplete="off" placeholder="YOUR NAME" required></label>
+          <label><span>PLAYER TWO</span><input id="player-two-name" maxlength="16" autocomplete="off" placeholder="RIVAL NAME" required></label>
+          <div class="setup-row">
+            <label><span>PLAYER ONE COLOR</span><input id="player-one-color" type="color" value="#cbd54b"></label>
+            <label><span>PLAYER TWO COLOR</span><input id="player-two-color" type="color" value="#e34231"></label>
+          </div>
+          <div class="setup-row">
+            <label><span>SNAKES</span><select id="snake-count"><option>3</option><option selected>4</option><option>5</option><option>6</option></select></label>
+            <label><span>LADDERS</span><select id="ladder-count"><option>3</option><option selected>4</option><option>5</option><option>6</option></select></label>
+          </div>
+          <button class="enter-button" type="submit">ENTER THE HOUSE <b>↗</b></button>
+        </form>
+      </div>
+    </section>
+    <section class="hud top-hud" aria-label="Game status">
+      <div class="brand-block">
+        <p class="eyebrow">THE ABANDONED ESTATE · 03:17 AM</p>
+        <h1>NIGHTMARE <span>LADDERS</span></h1>
+      </div>
+      <div class="status-cluster">
+        <div class="status-item"><span class="status-dot"></span><span id="sound-status">SOUND ON</span></div>
+        <div class="status-item"><span class="skull">☠</span><span id="turn-label">WAITING</span></div>
+      </div>
+      <div class="player-card card-one" id="player-card-one"><span>PLAYER ONE</span><strong id="corner-one-name">PLAYER ONE</strong><small id="corner-one-position">01 / 100</small><b id="corner-one-dice">?</b></div>
+      <div class="player-card card-two" id="player-card-two"><span>PLAYER TWO</span><strong id="corner-two-name">PLAYER TWO</strong><small id="corner-two-position">01 / 100</small><b id="corner-two-dice">?</b></div>
+    </section>
+
+    <section id="scene-wrap" aria-label="3D nightmare snakes and ladders board">
+      <div id="scene"></div>
+      <div class="vignette"></div>
+      <div class="scanlines"></div>
+      <div id="loading">WAKING THE HOUSE<span>...</span></div>
+    </section>
+
+    <section id="snake-alert" class="snake-alert" aria-live="assertive" aria-hidden="true">
+      <div class="alert-mark">☠</div>
+      <p>SNAKE ATTACK</p>
+      <strong id="snake-alert-player">THE HOUSE HAS YOU</strong>
+      <small>DRAGGED TO THE TAIL</small>
+    </section>
+    <section id="winner-alert" class="winner-alert" aria-live="assertive" aria-hidden="true">
+      <div class="winner-sigil">✦</div>
+      <p>THE HOUSE OPENS</p>
+      <strong id="winner-name">WINNER</strong>
+      <small>THE ESTATE REMEMBERS YOUR NAME</small>
+    </section>
+
+    <section class="hud bottom-hud">
+      <div class="legend">
+        <span><i class="legend-swatch player"></i> <b id="player-one-label">PLAYER ONE</b></span>
+        <span><i class="legend-swatch rival"></i> <b id="player-two-label">PLAYER TWO</b></span>
+        <span><i class="legend-swatch danger"></i> SNAKE</span>
+      </div>
+      <div class="controls">
+        <div class="turn-readout"><span class="small-label" id="position-label">POSITION</span><strong id="position-readout">01 / 100</strong></div>
+        <div class="dice-shell" id="dice-shell" aria-label="Last dice roll"><div id="dice-face">?</div></div>
+        <button id="roll-button" class="roll-button" type="button"><span>ROLL THE DICE</span><b>↗</b></button>
+        <button id="leave-button" class="leave-button" type="button">LEAVE MATCH</button>
+      </div>
+      <p id="message" class="message">Roll the dice. The house is listening.</p>
+    </section>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
